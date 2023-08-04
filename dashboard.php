@@ -39,7 +39,7 @@
             <div class="navigation-buttons ">
                 <button type="button" class="btn btn-add-instructor" data-toggle="modal" data-target="#addModal">Add
                     Instructor <i class="fa-solid fa-plus"></i></button>
-                <input type="text" placeholder="Search..." class="input-search">
+                <input type="text" placeholder="Search..." id="myInput" class="input-search">
             </div>
 
             <table class="table table-striped">
@@ -49,47 +49,35 @@
                         <th class="rate-col padding-20">Action</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td class="padding-20">Angelo Salvacion</td>
-                        <td class="text-center padding-20"><i class="fa-solid fa-list-check"></i> <i
-                                class="fa-solid fa-pencil" data-toggle="modal" data-target="#editModal"></i></td>
-                    </tr>
-                    <tr>
-                        <td class="padding-20">Angelo Salvacion</td>
-                        <td class="text-center padding-20"><i class="fa-solid fa-list-check"></i> <i
-                                class="fa-solid fa-pencil"></i></td>
-                        </td>
-                    </tr>
-                </tbody>
-
-            </table>
-
-        </div>
-
-        <div class="container">
-            <form action="rating.php" method="POST">
-                <label for="instructor">Instructor:</label>
-                <select name="instructor" id="instructor">
-
-                    <?php
+                <tbody id="myTable">
+                <?php
                 $conn = mysqli_connect('localhost:3306', 'root', '', 'evaluation');
                 $sql = "SELECT * FROM instructor ";
                 $retval = mysqli_query($conn, $sql);
-
                 if (mysqli_num_rows($retval) > 0) 
                 {
                     while ($row = mysqli_fetch_assoc($retval))
                     {
                         $ins_id = $row['ID'];
-                        $instructor_name = $row['instructor'];
-                        ?>
-                    <option value="<?php echo $ins_id  ?>"><?php echo $instructor_name  ?></option><?php
+                        $instructor_name = $row['instructor'];?>
+                            <tr>
+                                <td class="padding-20"><?php echo $instructor_name; ?></td>
+                                <td class="text-center padding-20">
+                                    <a href="dashboard.php?rating=<?php echo $row['ID']; ?>" ><i class="fa-solid fa-list-check"></i>
+                                    <a href="dashboard.php?update=<?php echo $row['ID']; ?>"><i class="fa-solid fa-pencil" 
+                                        aria-hidden="true"></i>
+                                    
+                                </td>
+                            </tr>
+                    <?php
+                        
                     }
                 }
             ?>
-                    <input type="submit">
-            </form>
+                </tbody>
+
+            </table>
+
         </div>
     </div>
 
@@ -107,9 +95,9 @@
                         </button></div>
                 </div>
                 <div class="modal-body">
-                    <form action="" class="form-inline">
-                        <input type="text" placeholder="Name of Instructor" class="input-instructor">
-                        <button type="button" class="btn btn-save-instructor">Save</button>
+                    <form action="add_instructor.php" method="POST" class="form-inline">
+                        <input type="text" name="ins_name" placeholder="Name of Instructor" class="input-instructor">
+                        <button type="submit" class="btn btn-save-instructor">Save</button>
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -118,6 +106,11 @@
             </div>
         </div>
     </div>
+<?php
+    if(isset($_GET['update']))
+{ 
+  $a = $_GET['update'];
+?>
 
     <!-- Edit Modal -->
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -131,8 +124,24 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <input type="text" placeholder="Name of Instructor" class="input-instructor">
-                    <button type="button" class="btn btn-update-instructor">Update</button>
+                    <form action="update_intructor_name.php" method="POST">
+                <?php
+                $conn_edit = mysqli_connect('localhost:3306', 'root', '', 'evaluation');
+                $sql_edit = "SELECT * FROM instructor WHERE ID = $a ";
+                $retval_edit = mysqli_query($conn_edit, $sql_edit);
+                if (mysqli_num_rows($retval_edit) > 0) 
+                {
+                    while ($row = mysqli_fetch_assoc($retval_edit))
+                    {
+                        $ins_name = $row['instructor'];
+                    }
+                }
+
+                        ?>
+                    <input type="hidden" value="<?php echo$a;?>" name="ins_id">
+                    <input type="text" name="ins_name" value="<?php echo$ins_name;?>" class="input-instructor">
+                    <button type="submit" class="btn btn-update-instructor">Update</button>
+                    </form>
                 </div>
                 <div class="modal-footer">
 
@@ -141,10 +150,37 @@
         </div>
     </div>
 
-    <script src="../Evaluation_program/fontawesome-free-6.4.0-web/fontawesome-free-6.4.0-web/js/fontawesome.js">
-    </script>
-    <script src="../Evaluation_program/fontawesome-free-6.4.0-web/fontawesome-free-6.4.0-web/js/all.js"></script>
+
+
+<?php
+}
+?>
 
 </body>
 
 </html>
+<script>
+
+
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
+
+<script>
+  $(document).ready(function(){
+    $("#editModal").modal('show');
+  });
+</script>
+
+
+<script src="../Evaluation_program/fontawesome-free-6.4.0-web/fontawesome-free-6.4.0-web/js/fontawesome.js">
+    </script>
+    <script src="../Evaluation_program/fontawesome-free-6.4.0-web/fontawesome-free-6.4.0-web/js/all.js"></script>
+    
