@@ -1,0 +1,109 @@
+.nav-width{
+    margin: 0 -20px;
+    border-radius: 0;
+}
+.btn-add-instructor{
+    width: 250px;
+    border-radius: 0;
+    background: maroon;
+    color: white;
+    padding: 10px;
+}
+
+.btn-add-instructor:focus{
+    outline: 0;
+    color: white;
+}
+
+.btn-add-instructor:hover{
+    color: white;
+    filter: brightness(85%);
+}
+
+.input-search{
+    width: 250px;
+    float: right;
+    border-radius: 0;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+.input-search:focus-visible{
+    outline: 0;
+    border-bottom: 1px solid black;
+}
+
+.rate-col{
+    width: 150px;
+    text-align: center;
+}
+
+.padding-20 {
+    padding: 20px !important;
+}
+
+th{
+    background-color: gray;
+    /* color: white; */
+}
+
+.table{
+    margin-top: 30px;
+}
+
+.fa-list-check, .fa-pencil{
+    cursor: pointer;
+}
+
+.fa-plus{
+    margin-left: 20px;
+}
+
+.fa-pencil{
+    margin-left: 15px;
+}
+
+.modal-body{
+    padding: 50px 20px;
+}
+
+.input-instructor{
+    border-radius: 0;
+    padding: 10px;
+    width: 65%;
+    border: none;
+    border-bottom: 1px solid gray;
+}
+
+.input-instructor:focus-visible{
+    outline: 0;
+}
+
+.btn-save-instructor, .btn-update-instructor{
+    width: 30%;
+    padding: 10px;
+    border-radius: 0;
+    margin-left: 4%;
+    background-color: maroon;
+    color: white;
+    font-weight: bold;    
+}
+
+.btn-save-instructor:focus{
+    outline: 0;
+}
+
+.btn-save-instructor:hover{
+    color: white;
+}
+
+.modal-footer{
+    background-color: maroon;
+}
+
+.modal-header{
+    background-color: gray;
+    display: flex;
+    justify-content: space-between !important;
+}
