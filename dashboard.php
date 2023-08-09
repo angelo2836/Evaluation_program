@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet"
-        href="../Evaluation_program/fontawesome-free-6.4.0-web/fontawesome-free-6.4.0-web/css/fontawesome.css">
+        href="../College_evaluation/fontawesome-free-6.4.2-web/css/fontawesome.css">
     <link rel="stylesheet"
-        href="../Evaluation_program/fontawesome-free-6.4.0-web/fontawesome-free-6.4.0-web/css/all.css">
+        href="../College_evaluation/fontawesome-free-6.4.2-web/css/all.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/dashboard.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
@@ -63,7 +63,7 @@
                             <tr>
                                 <td class="padding-20"><?php echo $instructor_name; ?></td>
                                 <td class="text-center padding-20">
-                                    <a href="dashboard.php?rating=<?php echo $row['ID']; ?>" ><i class="fa-solid fa-list-check"></i>
+                                    <a href="rating.php?rating=<?php echo $row['ID']; ?>" ><i class="fa-solid fa-list-check"></i>
                                     <a href="dashboard.php?update=<?php echo $row['ID']; ?>"><i class="fa-solid fa-pencil" 
                                         aria-hidden="true"></i>
                                     
